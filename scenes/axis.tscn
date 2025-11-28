@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cym6ygw40bvun"]
+
+[ext_resource type="Texture2D" uid="uid://dswrxf7yl47l6" path="res://assets/ironStand-overlay.png" id="1_12lcd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_12lcd"]
+size = Vector2(26, 430)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bfpnx"]
+radius = 13.999664
+height = 98.0117
+
+[node name="Axis" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_12lcd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_12lcd")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(5.6843446e-14, 190)
+rotation = 1.5778681
+shape = SubResource("CapsuleShape2D_bfpnx")

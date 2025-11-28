@@ -1,0 +1,10 @@
+Label
+Sprite2D
+PinJoint2D
+CollisionShape2D
+RigidBody2D
+StaticBody2D
+Node2D
+Node
+TileMapLayer
+Camera2D
