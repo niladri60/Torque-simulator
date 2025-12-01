@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://c85rjsktxl2o"]
+[gd_scene load_steps=18 format=4 uid="uid://c85rjsktxl2o"]
 
 [ext_resource type="Texture2D" uid="uid://7mib1v6834ab" path="res://assets/Basic_green_dot.png" id="1_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://b5c782acue1hd" path="res://assets/Tiles/Tiles/Assets/Background_2.png" id="2_sugp2"]
@@ -1769,6 +1769,8 @@ size = Vector2(538, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
 size = Vector2(94, 429)
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_choun"]
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -1918,3 +1920,30 @@ texture = ExtResource("10_choun")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IronStand"]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 239)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_choun")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(573, -14)
+rotation = -1.5698078
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_choun")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-573.00006, -12)
+rotation = 1.5754834
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("WorldBoundaryShape2D_choun")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(0, -323)
+rotation = 3.143485
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+shape = SubResource("WorldBoundaryShape2D_choun")

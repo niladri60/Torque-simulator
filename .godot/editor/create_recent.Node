@@ -1,9 +1,9 @@
+CollisionShape2D
+StaticBody2D
 Label
 Sprite2D
 PinJoint2D
-CollisionShape2D
 RigidBody2D
-StaticBody2D
 Node2D
 Node
 TileMapLayer
