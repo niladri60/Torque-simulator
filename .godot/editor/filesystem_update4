@@ -1,1 +1,4 @@
-res://scenes/main.tscn
+res://scenes/test_node.tscn
+res://scripts/brick.gd
+res://scenes/sea_saw_test.tscn
+res://scenes/bricks.tscn

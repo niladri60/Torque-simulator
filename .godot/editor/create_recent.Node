@@ -1,10 +1,10 @@
 CollisionShape2D
-StaticBody2D
-Label
 Sprite2D
-PinJoint2D
 RigidBody2D
+PinJoint2D
+StaticBody2D
+TileMapLayer
+Label
 Node2D
 Node
-TileMapLayer
 Camera2D
