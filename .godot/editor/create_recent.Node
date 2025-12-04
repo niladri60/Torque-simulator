@@ -1,10 +1,10 @@
+Label
 CollisionShape2D
 Sprite2D
 RigidBody2D
 PinJoint2D
 StaticBody2D
 TileMapLayer
-Label
 Node2D
 Node
 Camera2D

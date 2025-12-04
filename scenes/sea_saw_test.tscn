@@ -1,14 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6cef32fal3jr"]
+[gd_scene load_steps=11 format=3 uid="uid://c6cef32fal3jr"]
 
 [ext_resource type="Texture2D" uid="uid://darslavv7ip6t" path="res://assets/rustic-wooden-planks - Copy.png" id="2_8iblh"]
 [ext_resource type="Texture2D" uid="uid://dswrxf7yl47l6" path="res://assets/ironStand-overlay.png" id="2_x014a"]
-[ext_resource type="Texture2D" uid="uid://co62qsk4a5yph" path="res://assets/ball.png" id="3_8iblh"]
+[ext_resource type="Script" uid="uid://c2pifb6l40tkc" path="res://scripts/brick.gd" id="3_o48vp"]
+[ext_resource type="Texture2D" uid="uid://x85087v0kawo" path="res://assets/bricks.png" id="4_apr0s"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8iblh"]
-friction = 0.79
+friction = 50.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o48vp"]
-size = Vector2(350, 47.111267)
+size = Vector2(350.64157, 47.111267)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x014a"]
 size = Vector2(8, 202)
@@ -16,28 +17,30 @@ size = Vector2(8, 202)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qyu5l"]
 normal = Vector2(-0.9989157, -0.0465567)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_o48vp"]
-radius = 3928.0002
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_o48vp"]
+friction = 50.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apr0s"]
+size = Vector2(108, 36)
 
 [node name="SeaSaw" type="Node2D"]
 
 [node name="Plank" type="RigidBody2D" parent="."]
-position = Vector2(570, 320)
-mass = 50.0
+position = Vector2(358, 379)
+mass = 20.0
 physics_material_override = SubResource("PhysicsMaterial_8iblh")
-center_of_mass_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Plank"]
 scale = Vector2(1.5599952, 0.35999757)
 texture = ExtResource("2_8iblh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Plank"]
-position = Vector2(0, -5.9604645e-08)
+position = Vector2(-0.50042725, 0)
 scale = Vector2(1.5599952, 0.35999757)
 shape = SubResource("RectangleShape2D_o48vp")
 
 [node name="Pivot" type="StaticBody2D" parent="."]
-position = Vector2(576, 420)
+position = Vector2(358, 479)
 scale = Vector2(1.2426814, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
@@ -49,18 +52,18 @@ texture = ExtResource("2_x014a")
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_x014a")
 
-[node name="Border" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
-position = Vector2(545, 551)
-rotation = 1.5242221
-shape = SubResource("WorldBoundaryShape2D_qyu5l")
-
 [node name="Border2" type="StaticBody2D" parent="."]
 position = Vector2(1149, 348)
 rotation = -0.05080092
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Border2"]
+shape = SubResource("WorldBoundaryShape2D_qyu5l")
+
+[node name="Border" type="StaticBody2D" parent="."]
+position = Vector2(360, 557)
+rotation = 1.5305102
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
 shape = SubResource("WorldBoundaryShape2D_qyu5l")
 
 [node name="Border3" type="StaticBody2D" parent="."]
@@ -71,21 +74,64 @@ rotation = -3.1921172
 shape = SubResource("WorldBoundaryShape2D_qyu5l")
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
-position = Vector2(576, 320)
+position = Vector2(358, 379)
 node_a = NodePath("../Pivot")
 node_b = NodePath("../Plank")
 angular_limit_enabled = true
 angular_limit_lower = -0.5235988
 angular_limit_upper = 0.5235988
 
-[node name="Ball" type="RigidBody2D" parent="."]
-visible = false
-position = Vector2(691, 100)
+[node name="Brick" type="RigidBody2D" parent="."]
+position = Vector2(1014, 412)
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_o48vp")
+script = ExtResource("3_o48vp")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball"]
-scale = Vector2(0.01, 0.01)
-texture = ExtResource("3_8iblh")
+[node name="Sprite2D" type="Sprite2D" parent="Brick"]
+texture = ExtResource("4_apr0s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-scale = Vector2(0.01, 0.01)
-shape = SubResource("CircleShape2D_o48vp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brick"]
+shape = SubResource("RectangleShape2D_apr0s")
+
+[node name="Label" type="Label" parent="Brick"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "20 kg"
+
+[node name="Brick2" type="RigidBody2D" parent="."]
+position = Vector2(1001, 374)
+mass = 30.0
+physics_material_override = SubResource("PhysicsMaterial_o48vp")
+script = ExtResource("3_o48vp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Brick2"]
+texture = ExtResource("4_apr0s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brick2"]
+shape = SubResource("RectangleShape2D_apr0s")
+
+[node name="Label" type="Label" parent="Brick2"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "30kg"
+
+[connection signal="input_event" from="Brick" to="Brick" method="_on_input_event"]
+[connection signal="input_event" from="Brick2" to="Brick2" method="_on_input_event"]
